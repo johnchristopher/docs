@@ -17,7 +17,7 @@ Copy the `default` configuration file found in the same directory.
 
 	1. If you're not setting up a subdomain your ``ServerName`` will simply be set to ``mydomain.com``.
 	2. ``ServerAlias`` can been added too if you want to capture ``www.mydomain.com``.
-	3. Remember to change the values to match your server's name etc.
+	3. Remember to change the values to match your server's name, IP if running official docker image, etc.
 	4. Save once finished
 
 .. code-block:: apacheconf
@@ -40,7 +40,7 @@ Copy the `default` configuration file found in the same directory.
 		  RewriteCond %{REQUEST_URI} /api/v[0-9]+/(users/)?websocket [NC,OR]
 		  RewriteCond %{HTTP:UPGRADE} ^WebSocket$ [NC,OR]
 		  RewriteCond %{HTTP:CONNECTION} ^Upgrade$ [NC]
-		  RewriteRule .* wss://127.0.0.1:8065%{REQUEST_URI} [P,QSA,L]
+		  RewriteRule .* ws://127.0.0.1:8065%{REQUEST_URI} [P,QSA,L]
 		  RewriteCond %{DOCUMENT_ROOT}/%{REQUEST_FILENAME} !-f
 			# This line simply forces HTTPS
 		  RewriteRule (.*) https://%{SERVER_NAME}%{REQUEST_URI} [END,QSA,R=permanent]
